@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,45 +9,45 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: HelloScreen(),
+      home: GreetScreen(),
     );
   }
 }
 
-class HelloScreen extends StatefulWidget {
-  const HelloScreen({super.key});
+class GreetScreen extends StatefulWidget {
+  const GreetScreen({super.key});
 
   @override
-  State<HelloScreen> createState() => _HelloScreenState();
+  State<GreetScreen> createState() => _GreetScreenState();
 }
 
-class _HelloScreenState extends State<HelloScreen> {
-  String message = "Loading...";
+class _GreetScreenState extends State<GreetScreen> {
+  String greeting = "Fetching...";
 
   @override
   void initState() {
     super.initState();
-    fetchHello();
+    fetchGreeting();
   }
 
-  Future<void> fetchHello() async {
+  Future<void> fetchGreeting() async {
     try {
       final response = await http.get(
-        Uri.parse('http://10.0.2.2:3000/'), // use 10.0.2.2 for Android emulator
+        Uri.parse('http://192.168.0.104:3000/greet'), // Replace with your local IP
       );
 
       if (response.statusCode == 200) {
         setState(() {
-          message = response.body;
+          greeting = response.body;
         });
       } else {
         setState(() {
-          message = 'Failed to load data';
+          greeting = 'Failed to load greeting';
         });
       }
     } catch (e) {
       setState(() {
-        message = 'Error: $e';
+        greeting = 'Error: $e';
       });
     }
   }
@@ -57,8 +55,8 @@ class _HelloScreenState extends State<HelloScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Hello from Node.js")),
-      body: Center(child: Text(message)),
+      appBar: AppBar(title: const Text("Greet App")),
+      body: Center(child: Text(greeting, style: const TextStyle(fontSize: 20))),
     );
   }
 }
