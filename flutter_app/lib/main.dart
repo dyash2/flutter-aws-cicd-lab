@@ -33,7 +33,7 @@ class _GreetScreenState extends State<GreetScreen> {
   Future<void> fetchGreeting() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.0.104:3000/greet'), // Replace with your local IP
+       Uri.parse('http://13.234.75.102:3000/')
       );
 
       if (response.statusCode == 200) {
@@ -55,7 +55,7 @@ class _GreetScreenState extends State<GreetScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Greet App")),
+      appBar: AppBar(title: const Text("Hello App")),
       body: Center(child: Text(greeting, style: const TextStyle(fontSize: 20))),
     );
   }
