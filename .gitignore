@@ -1,3 +1,15 @@
+# Ignore key pairs
 *.pem
+
+# Ignore dependencies
 node_modules/
+
+# Ignore environment files
 .env
+
+# Optional: Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Optional: Ignore logs
+*.log
