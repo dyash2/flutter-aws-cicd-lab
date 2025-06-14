@@ -33,7 +33,7 @@ class _GreetScreenState extends State<GreetScreen> {
   Future<void> fetchGreeting() async {
     try {
       final response = await http.get(
-       Uri.parse('http://13.234.75.102:3000/')
+       Uri.parse('http://35.154.219.143:3000/')
       );
 
       if (response.statusCode == 200) {
