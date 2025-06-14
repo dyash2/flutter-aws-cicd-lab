@@ -17,10 +17,9 @@ jobs:
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ec2-user
-        key: ${{ secrets.EC2_SSH_KEY }}
+        key: ${{ secrets.EC2_SH_KEY }}
         script: |
           cd /home/ec2-user/my-node-api
-          git checkout main
-          git pull origin main
+          git pull origin main || echo "Not a git repo"
           npm install
           pm2 restart index || pm2 start index.js --name index
